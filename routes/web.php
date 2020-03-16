@@ -16,7 +16,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/categories', 'CategoryController@index');
     Route::get('/categories/create', 'CategoryController@create');
     Route::post('/categories/store', 'CategoryController@store');
-    Route::get('/categories/{id}/edit', 'CategoryController@edit');
+    Route::get('/categories/{category}/edit', 'CategoryController@edit');
     Route::put('/categories/{category}/update', 'CategoryController@update');
     Route::get('/categories/{id}/destroy', 'CategoryController@destroy');
 
@@ -28,5 +28,5 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/news/{id}/destroy', 'NewsController@destroy');
 });
 
-Route::get('/categories/{id}/show', 'CategoryController@show');
+Route::get('/categories/{category}/show', 'CategoryController@show');
 Route::get('/news/{id}', 'NewsController@show');

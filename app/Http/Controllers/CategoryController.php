@@ -3,39 +3,31 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-use App\News;
-use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Pagination\LengthAwarePaginator;
 
 class CategoryController extends Controller
 {
-    public $news;
     public $categories;
-    public  $category;
+    public $category;
 
     function __construct()
     {
-        $this->news = DB::table('news')->paginate(10);
         $this->categories = Category::all();
     }
 
     public function index()
     {
         return view('categories.index', [
-            'news' => $this->news,
             'categories' => $this->categories
         ]);
     }
 
     public function create()
     {
-            return view('categories.create', [
-                'news' => $this->news,
-                'categories' => $this->categories
-            ]);
+        return view('categories.create', [
+            'categories' => $this->categories
+        ]);
     }
 
     public function store(Request $request)
@@ -49,29 +41,27 @@ class CategoryController extends Controller
     }
 
 
-    public function show($id)
+    public function show(Category $category)
     {
-        $category = Category::find($id);
-        $tenNews = DB::table('news')->orderBy('updated_at', 'DESC')->paginate(10);
-        $recentNews = DB::table('news')->orderBy('updated_at', 'DESC')->paginate(3);
-
+        $tenNews = DB::table('news')->orderBy('updated_at', 'DESC')->limit(10)->get();
+        $recentNews = DB::table('news')->orderBy('updated_at', 'DESC')->limit(3)->get();
+        $news = $category->news()->paginate(3);
 
         return view('categories.show', [
             'category' => $category,
             'categories' => $this->categories,
             'tenNews' => $tenNews,
             'recentNews' => $recentNews,
-            'news' => $this->news
+            'news' => $news
         ]);
     }
 
 
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category = Category::find($id);
-
+        $news = $category->news;
         return view('categories.edit', [
-            'news' => $this->news,
+            'news' => $news,
             'category' => $category,
             'categories' => $this->categories
         ]);
@@ -86,7 +76,6 @@ class CategoryController extends Controller
 
         $category->update([
             'field' => $request->field,
-
         ]);
 
         return redirect()->action('CategoryController@index');
@@ -104,7 +93,7 @@ class CategoryController extends Controller
 
     protected function validateCategory()
     {
-        return \request()->validate([
+        return request()->validate([
             'field' => 'required'
         ]);
     }

@@ -16,9 +16,10 @@ class NewsController extends Controller
 
     function __construct()
     {
-        $this->news = DB::table('news')->paginate(5);
+        $this->news = News::all();
         $this->categories = Category::all();
     }
+
     public function index()
     {
         return view('news.index', [
@@ -31,7 +32,7 @@ class NewsController extends Controller
     public function create()
     {
         return view('news.create', [
-            'news' => $this->news,
+//            'news' => $this->news,
             'categories' => $this->categories
         ]);
     }

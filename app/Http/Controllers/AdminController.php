@@ -15,6 +15,10 @@ class AdminController extends Controller
         $news = News::all();
         $categories = Category::all();
 
-        return view('admin/index', ['categories' => $categories, 'news' => $news, 'users' => $users]);
+        return view('admin/index', [
+            'categories' => $categories,
+            'news' => $news,
+            'users' => $users
+        ]);
     }
 }
