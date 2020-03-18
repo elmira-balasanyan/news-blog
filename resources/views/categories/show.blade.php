@@ -15,7 +15,11 @@
                                              style='background-image: url({{ asset('images/' . $one->image) }}); height: 300px'></div>
                                         <div class='desc' style='height: 300px;'>
                                             <p class='meta' style='width: 117px'>
-                                                <span class='cat'>{{ ucfirst($category->field) }}</span>
+                                                <span class='cat'>
+{{--                                                    <i class='far fa-heart favorite-icon' style='font-size:24px'></i>--}}
+                                                    <i onclick="myFunction(this)" class="far fa-heart favorite" style="color: #F65A41"></i>
+                                                    {{ ucfirst($category->field) }}
+                                                </span>
                                                 <span class='date'>{{ $one->updated_at }}</span>
                                             </p>
                                             <h2><a href="/news/{{ $one->id }}">{{ $one->title }}</a></h2>
@@ -64,5 +68,25 @@
         </div>
         {{ $news ->links() }}
     </div>
+@endsection
+
+
+@section('script')
+{{--    <script>--}}
+{{--        $(".favorite-icon").click(function () {--}}
+{{--            // alert(555);--}}
+{{--            $(this).find(".favorite-icon").toggleClass("far fa-heart fas fa-heart");--}}
+{{--        });--}}
+{{--    </script>--}}
+
+<script>
+    function myFunction(x) {
+        x.classList.toggle("fas");
+    }
+
+    $('.favorite').on('click', function () {
+        setCookie('id', 5);
+    });
+</script>
 @endsection
 

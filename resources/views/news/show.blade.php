@@ -9,18 +9,18 @@
                         <div class='row'>
                             <div class='col-md-12'>
                                 <div class='blog-entry-style'>
-                                    @foreach($singleNews->categories as $category)
+                                    @foreach($news->categories as $category)
                                         <p style='display: inline-block'>| {{ ucfirst($category->field) }} |</p>
                                     @endforeach
 
-                                    <div class='image' style='background-image: url({{ asset('images/' . $singleNews->image) }});background-repeat: no-repeat; min-height: 400px;'></div>
+                                    <div class='image' style='background-image: url({{ asset('images/' . $news->image) }});background-repeat: no-repeat; min-height: 400px;'></div>
 
                                     <div class='desc' style='padding: 0'>
                                         <p class='meta'>
-                                            <span class='date'>{{ $singleNews->updated_at }}</span>
+                                            <span class='date'>{{ $news->updated_at }}</span>
                                         </p>
-                                        <h2>{{ $singleNews->title }}</h2>
-                                        <p>{{ $singleNews->text }}</p>
+                                        <h2>{{ $news->title }}</h2>
+                                        <p>{{ $news->text }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -32,14 +32,14 @@
                 <div class='col-md-3'>
                     {{--  Recent news--}}
                     <div class='side animate-box' style='margin-top: 48px'>
-                        @foreach($recentNews as $news)
+                        @foreach($recentNews as $one)
                             <div class='f-blog'>
-                                <a href="{{ asset('news/' . $news->id) }}" class='blog-img'
-                                   style='background-image: url({{ asset('images/' . $news->image) }});'>
+                                <a href="{{ asset('news/' . $one->id) }}" class='blog-img'
+                                   style='background-image: url({{ asset('images/' . $one->image) }});'>
                                 </a>
                                 <div class='desc'>
                                     <h3>
-                                        <a href="{{ asset('news/' . $news->id) }}' class='blog-img">Recent news</a>
+                                        <a href="{{ asset('news/' . $one->id) }}' class='blog-img">Recent news</a>
                                     </h3>
                                     <p class='admin'><span>25 March 2018</span></p>
                                 </div>

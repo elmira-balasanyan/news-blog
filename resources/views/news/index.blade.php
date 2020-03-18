@@ -30,12 +30,12 @@
 
 
                         <td>
-                            <a href="/news/{{ $one->id }}" class='btn-success btn-sm'
+                            <a href="/news/{{ $one->id }}" class='btn-success btn-xs'
                                style='float: right; margin-left: 5px'>Show</a>
                             <a href="/news/{{ $one->id }}/edit"
-                               class='btn-primary btn-sm' style='float: right;margin-left: 5px'>Update</a>
+                               class='btn-primary btn-xs' style='float: right;margin-left: 5px'>Update</a>
                             <a href="/news/{{ $one->id }}/destroy"
-                               class='btn-danger btn-sm' style='float: right'>Delete</a>
+                               class='btn-danger btn-xs' style='float: right'>Delete</a>
                         </td>
                     </tr>
                 @endforeach

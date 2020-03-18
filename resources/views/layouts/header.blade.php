@@ -44,7 +44,9 @@
     <!-- Modernizr JS -->
     <script src='{{asset('assets/js/modernizr-2.6.2.min.js')}}'></script>
     <script src='{{asset('assets/js/respond.min.js')}}'></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
+    <script src='https://kit.fontawesome.com/a076d05399.js'></script>
     {{-- Select2--}}
     <link href='https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css' rel='stylesheet'/>
 </head>
@@ -68,7 +70,7 @@
 
                         @foreach($categories as $category)
                             <li class="'colorlib' . '{{ $category->field ? '-active' : '' }}' ">
-                                <a href='{{ asset('categories/' . $category->id . '/show') }}'>{{ $category->field }}</a>
+                                <a href='{{ asset('categories/' . $category->id) }}'>{{ $category->field }}</a>
                             </li>
                         @endforeach
 

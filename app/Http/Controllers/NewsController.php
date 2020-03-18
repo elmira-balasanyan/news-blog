@@ -62,14 +62,14 @@ class NewsController extends Controller
 
 
 
-    public function show($id)
+    public function show(News $news)
     {
-        $singleNews = News::find($id);
+//        $singleNews = News::find($id);
         $tenNews = DB::table('news')->orderBy('updated_at', 'DESC')->paginate(10);
         $recentNews = DB::table('news')->orderBy('updated_at', 'DESC')->paginate(3);
 
         return view('news.show', [
-            'singleNews' => $singleNews,
+            'news' => $news,
             'categories' => $this->categories,
             'tenNews' => $tenNews,
             'recentNews' => $recentNews
@@ -77,18 +77,18 @@ class NewsController extends Controller
     }
 
 
-    public function edit($id)
+    public function edit(News $news)
     {
-        $singleNews = News::find($id);
+//        $singleNews = News::find($id);
 
         return view('news.edit', [
-            'singleNews' => $singleNews,
+            'news' => $news,
             'categories' => $this->categories
         ]);
     }
 
 
-    public function update(Request $request, News $singleNews, Category $category)
+    public function update(Request $request, News $news, Category $category)
     {
         $request->validate([
             'title' => 'sometimes',
@@ -98,28 +98,27 @@ class NewsController extends Controller
             'field' => 'sometimes'
         ]);
 
-        $singleNews->update([
+        $news->update([
             'title' =>  $request->title,
             'text' =>  $request->text,
             'description' =>  $request->description,
-            'image' =>  $singleNews->id . '.jpg'
+            'image' =>  $news->id . '.jpg'
         ]);
 
-        $singleNews->categories()->detach();
+        $news->categories()->detach();
 
         $category->update([
             'field' => $request->field
         ]);
 
-
-        $singleNews->categories()->sync($request->categories, false);
+        $news->categories()->sync($request->categories, false);
 
         return redirect()->action('NewsController@index');
     }
 
-    public function destroy($id)
+    public function destroy(News $news)
     {
-        $news = News::find($id);
+//        $news = News::find($id);
         $news->categories()->detach();
         $news->delete();
 

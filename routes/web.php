@@ -18,15 +18,15 @@ Route::group(['middleware' => 'admin'], function () {
     Route::post('/categories/store', 'CategoryController@store');
     Route::get('/categories/{category}/edit', 'CategoryController@edit');
     Route::put('/categories/{category}/update', 'CategoryController@update');
-    Route::get('/categories/{id}/destroy', 'CategoryController@destroy');
+    Route::get('/categories/{category}/destroy', 'CategoryController@destroy');
 
     Route::get('/news', 'NewsController@index');
     Route::get('/news/create', 'NewsController@create');
     Route::post('/news/store', 'NewsController@store');
-    Route::get('/news/{id}/edit', 'NewsController@edit');
-    Route::put('/news/{singleNews}/update', 'NewsController@update');
-    Route::get('/news/{id}/destroy', 'NewsController@destroy');
+    Route::get('/news/{news}/edit', 'NewsController@edit');
+    Route::put('/news/{news}/update', 'NewsController@update');
+    Route::get('/news/{news}/destroy', 'NewsController@destroy');
 });
 
-Route::get('/categories/{category}/show', 'CategoryController@show');
-Route::get('/news/{id}', 'NewsController@show');
+Route::get('/categories/{category}', 'CategoryController@show');
+Route::get('/news/{news}', 'NewsController@show');

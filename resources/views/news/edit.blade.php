@@ -15,7 +15,7 @@
 
                     <h1 style='margin-top: 30px'>Update</h1>
 
-                    <form method='POST' action="{{ action('NewsController@update', $singleNews) }}" style='margin-top: 30px' enctype='multipart/form-data'>
+                    <form method='POST' action="{{ action('NewsController@update', $news) }}" style='margin-top: 30px' enctype='multipart/form-data'>
 
                         @csrf
                         @method('PUT')
@@ -23,18 +23,18 @@
                         <div class='form-group'>
                             <label for='select_preferences'>Title</label>
                             <input type='text' class='form-control' id='formGroupExampleInput' name='title'
-                                   placeholder='Title' value={{ $singleNews->title }}>
+                                   value={{ $news->title }}>
                         </div>
 
                         <div class='form-group'>
                             <label for='select_preferences'>Description:</label>
-                            <input type='text' class='form-control' id='formGroupExampleInput' name='description' placeholder='Description'
-                                   value={{ $singleNews->description }}>
+                            <input type='text' class='form-control' id='formGroupExampleInput' name='description'
+                                   value="{{ $news->description }}">
                         </div>
 
                         <div class='form-group'>
                             <label for='text'>Text:</label>
-                            <textarea name='text' class='form-control' rows='5' id='comment'> {{ $singleNews->text }}</textarea>
+                            <textarea name='text' class='form-control' rows='5' id='comment'> {{ $news->text }}</textarea>
                         </div>
 
                         <div class='form-group'>
@@ -43,7 +43,7 @@
                                     style='width: 100%'>
                                 @foreach ($categories as $category)
                                     <option value='{{$category->id}}'
-                                    @foreach($singleNews->categories as $selected_category)
+                                    @foreach($news->categories as $selected_category)
                                         {{ in_array($category->id,[$selected_category->id]) ? 'selected' : ''}}
                                         @endforeach>
                                         {{ $category->field }}

@@ -25,9 +25,9 @@
                         <td>{{ $category->updated_at }}</td>
                         <td>
                             <a href="/categories/{{ $category->id }}/edit"
-                               class='btn-primary btn-sm' style='float: right; margin-left: 10px;'>Update</a>
+                               class='btn-primary btn-xs' style='float: right; margin-left: 10px;'>Update</a>
                             <a href="/categories/{{ $category->id }}/destroy"
-                               class='btn-danger btn-sm' style='float: right'>Delete</a>
+                               class='btn-danger btn-xs' style='float: right'>Delete</a>
                         </td>
                     </tr>
                 @endforeach
